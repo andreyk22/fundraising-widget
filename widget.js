@@ -4,15 +4,19 @@ const Fundraiser = (function () {
   let goalFundedPercent = 0;
 
   const init = () => {
-    showControls(true);
+    showControls();
     refreshData();
   };
 
-  const setInitialValues = (total, percent) => {
-    goal = total;
+
+  const setDefaulGoal = (value) => {
+    goal = value;
+    refreshData();
+  };
+
+  const setDefaultPercentage = (percent) => {
     goalFundedPercent = percent;
     alreadyFunded = (goalFundedPercent / 100) * goal;
-
     refreshData();
   };
 
@@ -28,6 +32,7 @@ const Fundraiser = (function () {
     document.getElementById('invalidInput').hidden = true;
     document.getElementById('fundraise_goalText').innerText = `$${goal}`;
     setProgressBar();
+    showControls();
   };
 
   const setProgressBar = () => {
@@ -64,8 +69,11 @@ const Fundraiser = (function () {
     fund: () => {
       return fund()
     },
-    setInitialValues: (goal, percent) => {
-      return setInitialValues(goal, percent)
+    setDefaulGoal: (value) => {
+      return setDefaulGoal(value)
+    },
+    setDefaulPercentage: (value) => {
+      return setDefaultPercentage(value)
     },
     closeNote: () => {
       return closeNote()
