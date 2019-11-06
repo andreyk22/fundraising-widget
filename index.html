@@ -2,10 +2,11 @@
 <html>
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="widget.css">
 </head>
 <script src="widget.js"></script>
 <script>try {
-    Typekit.load();
+  Typekit.load();
 } catch (e) {
 }</script>
 
@@ -112,9 +113,23 @@
                 Thank you for your pledge!
                 <a onclick="closeNote()" href="#">Close</a>
             </div>
-            <small class="invalidInputMessage" hidden id="invalidInput">Please enter valid integer value that will not exceed fundraising goal.</small>
+            <small class="invalidInputMessage" hidden id="invalidInput">Please enter valid integer value that will not
+                exceed fundraising goal.</small>
         </div>
     </div>
 </div>
+<script>
+  const instance = new Fundraiser();
+  instance.setInitialValues(1000, 75);
+
+  const fund = () => {
+    instance.fund();
+  };
+
+  const closeNote = () => {
+    instance.closeNote();
+  };
+
+</script>
 </body>
 </html>

@@ -1,64 +1,74 @@
-class Fundraiser {
-  goal = 1000;
-  alreadyFunded = 0;
-  goalFundedPercent = 0;
+const Fundraiser = (function () {
+  let goal = 0;
+  let alreadyFunded = 0;
+  let goalFundedPercent = 0;
 
-  init() {
-    this.showControls(true);
-    this.refreshData();
-  }
+  const init = () => {
+    showControls(true);
+    refreshData();
+  };
 
-  showControls(show = true) {
+  const setInitialValues = (total, percent) => {
+    goal = total;
+    goalFundedPercent = percent;
+    alreadyFunded = (goalFundedPercent / 100) * goal;
+
+    refreshData();
+  };
+
+  const showControls = (show = true) => {
     document.getElementById('fundraise_amount').hidden = !show;
     document.getElementById('fundraise_pledgeButton').hidden = !show;
     document.getElementById('thanksNote').hidden = show;
-  }
+  };
 
-  refreshData() {
-    document.getElementById('fundraise_currentFundingText').innerText = `$${this.alreadyFunded}`;
-    document.getElementById('fundraise_remainingText').innerText = `${this.goalFundedPercent.toFixed(2)}%`;
-    document.getElementById('fundraise_progressBar').style.width = `${this.goalFundedPercent}%`;
-    document.getElementById('fundraise_progressBar').style.backgroundColor = this.alreadyFunded === this.goal ? '#1CBC2C' : '#EF5F3C';
+  const refreshData = () => {
+    document.getElementById('fundraise_currentFundingText').innerText = `$${alreadyFunded}`;
+    document.getElementById('fundraise_remainingText').innerText = `${goalFundedPercent.toFixed(2)}%`;
     document.getElementById('invalidInput').hidden = true;
-  }
+    document.getElementById('fundraise_goalText').innerText = `$${goal}`;
+    setProgressBar();
+  };
 
-  fund() {
+  const setProgressBar = () => {
+    document.getElementById('fundraise_progressBar').style.width = `${goalFundedPercent}%`;
+    document.getElementById('fundraise_progressBar').style.backgroundColor = alreadyFunded === goal ? '#1CBC2C' : '#EF5F3C';
+  };
+
+  const fund = () => {
     const amount = Number(document.getElementById('fundraise_amount').value);
-    if (!this.amountIsValid(amount)) {
+    if (!amountIsValid(amount)) {
       document.getElementById('invalidInput').hidden = false;
       return;
     }
-    this.setFundedAmount(amount);
-    this.refreshData();
-    this.showControls(false);
-  }
+    setFundedAmount(amount);
+    refreshData();
+    showControls(false);
+  };
 
-  setFundedAmount(amount) {
-    this.alreadyFunded += amount;
-    this.goalFundedPercent = (this.alreadyFunded / this.goal) * 100;
-  }
+  const setFundedAmount = (amount) => {
+    alreadyFunded += amount;
+    goalFundedPercent = (alreadyFunded / goal) * 100;
+  };
 
-  amountIsValid(value) {
-    return /^[1-9]\d*$/.test(value) && value <= (this.goal - this.alreadyFunded);
-  }
+  const amountIsValid = (value) => {
+    return /^[1-9]\d*$/.test(value) && value <= (goal - alreadyFunded);
+  };
 
-  closeNote() {
-    this.init();
+  const closeNote = () => {
+    init();
     document.getElementById('fundraise_amount').value = '';
+  };
+
+  return {
+    fund: () => {
+      return fund()
+    },
+    setInitialValues: (goal, percent) => {
+      return setInitialValues(goal, percent)
+    },
+    closeNote: () => {
+      return closeNote()
+    }
   }
-
-}
-
-var instance = new Fundraiser();
-
-window.onload = function () {
-  instance.init();
-};
-
-function fund() {
-  instance.fund();
-}
-
-function closeNote() {
-  instance.closeNote();
-}
+});

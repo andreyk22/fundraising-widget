@@ -96,6 +96,3 @@ button, input[type="button"] {
     color: #FFF;
     border-radius: 5px;
 }
-.invalidInputMessage {
-    color: red;
-}
