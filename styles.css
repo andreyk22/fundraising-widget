@@ -1,0 +1,101 @@
+/* Global resets */
+body {font-family: "rooney-sans", Avenir-Book, Calibri, sans-serif; color: #424242; line-height: 1.4; font-size: 12px;}
+
+/* Fonts */
+h1 {
+    font-family: "rooney-web", 'AmericanTypewriter', Rockwell, serif;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.container {
+    margin: 2em auto;
+    max-width: 630px;
+}
+
+/* COLORS:
+  blue: #20A1D4;
+  green: #1CBC2C;
+  orange: #EF5F3C;
+  black: #424242;
+  grey: #777;
+  light grey: #eaeaea;
+*/
+
+/* Tooltip */
+
+.tooltip {
+    color: #FFF;
+    background-color: #424242;
+    padding: 10px 0;
+    border-radius: 4px;
+    width: 250px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Progress bar */
+
+.progressBar_container {
+    position: relative;
+    height: 12px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.progressBar_bar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    background-color: #20A1D4;
+    width: 20%;
+}
+
+/* Box frame */
+
+.boxFrame {
+    width: 250px;
+    border: 1px solid #EAEAEA;
+    text-align: left;
+}
+
+.boxFrame_content {
+    margin: 10px;
+}
+
+/* Notification */
+
+.notification {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.notification a {
+    color: #000;
+}
+
+.notification-success {
+    border-color: #1CBC2C;
+    background-color: #dff0d8;
+}
+
+/* Other */
+
+input[type="button"] {
+    padding: 11px;
+    border-radius: 5px;
+    border: 1px solid #EAEAEA;
+}
+
+button, input[type="button"] {
+    padding: 12px;
+    background-color: #1CBC2C;
+    border: 0px;
+    color: #FFF;
+    border-radius: 5px;
+}
+.invalidInputMessage {
+    color: red;
+}
